@@ -1,0 +1,35 @@
+<div *ngIf="hero">
+  <h2>{{hero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{hero.id}}</div>
+  <div>
+    <label>Name:
+      <input [(ngModel)]="hero.name" placeholder="name"/>
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button> &nbsp;
+  <button (click)="save()">save</button>
+
+  <br/><br/><br/>
+  Powers: 
+  <ul>
+    <li *ngFor="let powerId of hero.hasPowers">
+      {{getPowerName(powerId)}}
+    </li>
+  </ul>
+  <br/>
+  <br/>
+
+  <label style="width:200px">More Powers:
+  <select id="MorePowers" style="width:200px" (change)="powerSelectChange($event)">
+    <option value="0"></option>
+    <option *ngFor="let power of powers" value={{power.id}}>
+        {{power.name}}
+    </option>
+  </select>
+  
+  <button id="addHeroPowerButton" [hidden]="heroPowerBlank" (click)="addHeroPower()">Add Power</button>
+  
+</label>
+  
+
+</div>
