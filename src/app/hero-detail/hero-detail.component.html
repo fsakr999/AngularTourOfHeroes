@@ -5,7 +5,7 @@
             <span>id: </span>{{hero.id}}
         </div>
         <div>
-            <label for=":heroName">Name:</label>
+            <label for="heroName">Name:</label>
             <input name="heroName" [(ngModel)]="hero.name" placeholder="name" />
         </div>
         <button (click)="goBack()">go back</button> &nbsp;
@@ -20,7 +20,7 @@
         </ul>
         <div>
             <label for="addPower">Available Powers:</label>
-            <select name="addPower" id="addPower" [(ngModel)]="powerId">
+            <select name="addPower" [(ngModel)]="powerId">
                 <option selected disabled hidden></option>
                 <option *ngFor="let power of powers | keyvalue" value={{power.key}}>
                     {{power.value}}
