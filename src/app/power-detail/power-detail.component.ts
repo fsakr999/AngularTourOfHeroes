@@ -35,7 +35,7 @@ export class PowerDetailComponent implements OnInit {
 
   save(): void {
     this.powerService.updatePower(this.power)
- .subscribe(() => this.goBack());
+    .subscribe(() => this.goBack());
   }
 
 }

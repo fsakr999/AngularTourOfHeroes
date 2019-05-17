@@ -10,18 +10,18 @@ import { Injectable } from '@angular/core';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const heroes = [
-      { id: 11, name: 'Superman', hasPowers: [11, 12, 13, 14, 15, 16]},
-      { id: 12, name: 'Spiderman', hasPowers: [12, 15, 17, 18, 19]},
-      { id: 13, name: 'Black Panther', hasPowers: [12, 15, 17, 18, 19, 21]},
-      { id: 14, name: 'Captain Marvel', hasPowers: [11, 12, 18, 20, 21]},
-      { id: 15, name: 'The Shadow', hasPowers: [22, 23]},
-      { id: 16, name: 'Professor X', hasPowers: [22, 25]},
-      { id: 17, name: 'Rubberman', hasPowers: [24, 26]},
-      { id: 17, name: 'Dynamo', hasPowers: [11, 12, 13, 25, 27]},
-      { id: 18, name: 'Red Tornado', hasPowers: [11, 12, 27]}
+      { id: 11, name: 'Superman', powers: [11, 12, 13, 14, 15, 16]},
+      { id: 12, name: 'Spiderman', powers: [12, 15, 17, 18, 19]},
+      { id: 13, name: 'Black Panther', powers: [12, 15, 17, 18, 19, 21]},
+      { id: 14, name: 'Captain Marvel', powers: [11, 12, 18, 20, 21]},
+      { id: 15, name: 'The Shadow', powers: [22, 23]},
+      { id: 16, name: 'Professor X', powers: [22, 25]},
+      { id: 17, name: 'Rubberman', powers: [24, 26]},
+      { id: 17, name: 'Dynamo', powers: [11, 12, 13, 25, 27]},
+      { id: 18, name: 'Red Tornado', powers: [11, 12, 27]}
 
-//      { id: 19, name: '', hasPowers: []},
-//      { id: 21, name: '', hasPowers: []}
+//      { id: 19, name: '', powers: []},
+//      { id: 21, name: '', powers: []}
     ];
 
     const powers = [
@@ -43,8 +43,6 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 26, name: 'Elasticity' },
       { id: 27, name: 'Shape Shifting' },
       { id: 27, name: 'Creating Storms' }
-
-      
     ];
 
     return {heroes, powers};

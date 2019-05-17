@@ -1,35 +1,34 @@
 <div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{hero.id}}</div>
-  <div>
-    <label>Name:
-      <input [(ngModel)]="hero.name" placeholder="name"/>
-    </label>
-  </div>
-  <button (click)="goBack()">go back</button> &nbsp;
-  <button (click)="save()">save</button>
-
-  <br/><br/><br/>
-  Powers: 
-  <ul>
-    <li *ngFor="let powerId of hero.hasPowers">
-      {{getPowerName(powerId)}}
-    </li>
-  </ul>
-  <br/>
-  <br/>
-
-  <label style="width:200px">More Powers:
-  <select id="MorePowers" style="width:200px" (change)="powerSelectChange($event)">
-    <option value="0"></option>
-    <option *ngFor="let power of powers" value={{power.id}}>
-        {{power.name}}
-    </option>
-  </select>
-  
-  <button id="addHeroPowerButton" [hidden]="heroPowerBlank" (click)="addHeroPower()">Add Power</button>
-  
-</label>
-  
-
+    <div>
+        <h2>{{hero.name | uppercase}} Details</h2>
+        <div>
+            <span>id: </span>{{hero.id}}
+        </div>
+        <div>
+            <label for=":heroName">Name:</label>
+            <input name="heroName" [(ngModel)]="hero.name" placeholder="name" />
+        </div>
+        <button (click)="goBack()">go back</button> &nbsp;
+        <button (click)="save()">save</button>
+    </div>
+    <div>
+        <p>Powers:</p>
+        <ul>
+            <li *ngFor="let heroPowerId of hero.powers">
+                {{ powers[heroPowerId] }}
+            </li>
+        </ul>
+        <div>
+            <label for="addPower">Available Powers:</label>
+            <select name="addPower" id="addPower" [(ngModel)]="powerId">
+                <option selected disabled hidden></option>
+                <option *ngFor="let power of powers | keyvalue" value={{power.key}}>
+                    {{power.value}}
+                </option>
+            </select>
+            <div>
+                <button *ngIf="powerId" (click)="addHeroPower(powerId)">Add Power</button>
+            </div>
+        </div>
+    </div>
 </div>
