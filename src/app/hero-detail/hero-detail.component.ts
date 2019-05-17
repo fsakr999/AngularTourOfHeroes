@@ -15,7 +15,7 @@ import { PowerService } from '../power.service';
 export class HeroDetailComponent implements OnInit {
     @Input() hero: Hero;
     @Input() power: Power;
-    powers: object = {};
+    powers: { id: number, name: string};
 
     constructor(
         private route: ActivatedRoute,
@@ -35,7 +35,7 @@ export class HeroDetailComponent implements OnInit {
             this.powers = Object.assign({}, ...allPowers.map(power => {
                 return { [power.id]: power.name }
             }))
-        })
+        });
     }
 
     goBack(): void {
@@ -46,7 +46,7 @@ export class HeroDetailComponent implements OnInit {
         this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
     }
 
-    addHeroPower(powerId): void {
+    addHeroPower(powerId: string): void {
         this.hero.powers.push(parseInt(powerId));
         this.save();
     }
