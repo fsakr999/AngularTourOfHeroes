@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const heroes = [
+    const heroesModel = [
       { id: 11, name: 'Superman', powers: [11, 12, 13, 14, 15, 16]},
       { id: 12, name: 'Spiderman', powers: [12, 15, 17, 18, 19]},
       { id: 13, name: 'Black Panther', powers: [12, 15, 17, 18, 19, 21]},
@@ -19,9 +19,6 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 17, name: 'Rubberman', powers: [24, 26]},
       { id: 17, name: 'Dynamo', powers: [11, 12, 13, 25, 27]},
       { id: 18, name: 'Red Tornado', powers: [11, 12, 27]}
-
-//      { id: 19, name: '', powers: []},
-//      { id: 21, name: '', powers: []}
     ];
 
     const powers = [
@@ -44,6 +41,15 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 27, name: 'Shape Shifting' },
       { id: 27, name: 'Creating Storms' }
     ];
+
+    const heroes: Hero[] = [];
+    for (const h of heroesModel) {
+      heroes.push({
+        id: h.id,
+        name: h.name,
+        powers: powers.filter(p => h.powers.includes(p.id))
+      });
+    }
 
     return {heroes, powers};
   }

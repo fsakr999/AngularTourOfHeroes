@@ -8,27 +8,31 @@
             <label for="heroName">Name:</label>
             <input name="heroName" [(ngModel)]="hero.name" placeholder="name" />
         </div>
-        <button (click)="goBack()">go back</button> &nbsp;
-        <button (click)="save()">save</button>
     </div>
     <div>
-        <p>Powers:</p>
-        <ul>
-            <li *ngFor="let powerId of hero.powers">
-                {{ powers[powerId] }}
-            </li>
+        <label>Powers:</label>
+        <ul *ngIf="hero.powers?.length; else noHeroPowers">
+            <li *ngFor="let power of hero.powers">{{power.name}}</li>
         </ul>
+        <ng-template #noHeroPowers>
+            <div>{{hero.name}} has no powers.</div>
+        </ng-template>
+    </div>
+    <div>
+        <label for="addPower">Available Powers: </label>
+        <select *ngIf="powers?.length; else noPowers" [(ngModel)]="powerSelect">
+            <option selected disabled hidden></option>
+            <option *ngFor="let power of powers" [ngValue]="power">
+                {{power.name}}
+            </option>
+        </select>
+        <ng-template #noPowers>
+            <div>There are no powers available.</div>
+        </ng-template>
         <div>
-            <label for="addPower">Available Powers:</label>
-            <select name="addPower" [(ngModel)]="powerId">
-                <option selected disabled hidden></option>
-                <option *ngFor="let power of powers | keyvalue" value={{power.key}}>
-                    {{power.value}}
-                </option>
-            </select>
-            <div>
-                <button *ngIf="powerId" (click)="addHeroPower(powerId)">Add Power</button>
-            </div>
+            <button *ngIf="powerSelect" (click)="addHeroPower(powerSelect); powerSelect = ''">Add Power</button>
         </div>
     </div>
+    <button (click)="goBack()">go back</button> &nbsp;
+    <button (click)="save()">save</button>
 </div>
