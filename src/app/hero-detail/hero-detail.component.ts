@@ -53,4 +53,10 @@ export class HeroDetailComponent implements OnInit {
         this.hero.powers.push(power);
         this.powers = this.powers.filter(p => p.id !== power.id);
     }
+
+    deleteHeroPower(power: Power): void {
+        this.powers.push(power);
+        this.powers = this.powers.sort((a, b) => a.id - b.id);
+        this.hero.powers = this.hero.powers.filter(p => p.id !== power.id);
+    }
 }

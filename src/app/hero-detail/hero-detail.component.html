@@ -12,7 +12,9 @@
     <div>
         <label>Powers:</label>
         <ul *ngIf="hero.powers?.length; else noHeroPowers">
-            <li *ngFor="let power of hero.powers">{{power.name}}</li>
+            <li *ngFor="let power of hero.powers">
+                <a [routerLink]="" (click)="deleteHeroPower(power)">{{power.name}}</a>
+            </li>
         </ul>
         <ng-template #noHeroPowers>
             <div>{{hero.name}} has no powers.</div>
