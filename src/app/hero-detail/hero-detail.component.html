@@ -10,14 +10,25 @@
         </div>
     </div>
     <div>
+        <br/>
         <label>Powers:</label>
-        <ul *ngIf="hero.powers?.length; else noHeroPowers">
+
+        <ul class="heroes" *ngIf="hero.powers?.length; else noHeroPowers">
             <li *ngFor="let power of hero.powers">
-                <a [routerLink]="" (click)="deleteHeroPower(power)">{{power.name}}</a>
+                <a routerLink="/powerDetail/{{power.id}}">
+                    <span class="badge">{{power.id}}</span> {{power.name}}
+                </a>
+
+                <button class="delete" title="delete power" (click)="deleteHeroPower(power)">x</button>
             </li>
         </ul>
+
         <ng-template #noHeroPowers>
-            <div>{{hero.name}} has no powers.</div>
+            <div>
+                <br/><br/>
+                {{hero.name}} has no powers.
+                <br/><br/><br/>
+            </div>
         </ng-template>
     </div>
     <div>
@@ -28,13 +39,16 @@
                 {{power.name}}
             </option>
         </select>
+
+        &nbsp;
+        <button *ngIf="powerSelect" (click)="addHeroPower(powerSelect); powerSelect = ''">Add Power</button>
+
         <ng-template #noPowers>
-            <div>There are no powers available.</div>
+            <div>There are no more powers available.</div>
         </ng-template>
-        <div>
-            <button *ngIf="powerSelect" (click)="addHeroPower(powerSelect); powerSelect = ''">Add Power</button>
-        </div>
+
     </div>
+    <br/><br/>
     <button (click)="goBack()">go back</button> &nbsp;
     <button (click)="save()">save</button>
 </div>
